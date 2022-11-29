@@ -37,7 +37,7 @@ class RatingRoutes {
     const newRating = new Rating({ tittle, rater, userRated, rating, description })
     // const savedRating = await newRating.save()
 
-    user.personalRatings.push(newRating._id)
+    user?.personalRatings.push(newRating._id)
 
     // const userToUpdate = await User.findOneAndUpdate({ _id: userRated }, { personalRatings: user.personalRatings })
 
@@ -52,7 +52,7 @@ class RatingRoutes {
     const newRating = new Rating({ tittle, rater, activityRated, rating, description })
     // const savedRating = await newRating.save()
 
-    activity.ratings.push(newRating._id)
+    activity?.ratings.push(newRating._id)
 
     // const activityToUpdate = await Activity.findOneAndUpdate({ _id: activityRated }, { ratings: activity.ratings })
 

@@ -64,17 +64,18 @@ class ActivityRoutes {
       }
     })
 
-    const user = await User.findById(organizer)
+/*     const user = await User.findById(organizer)
     // if (user.active === false) {
     //  res.status(404).send('Organizer not found')
     // } else {
     newActivity.users.push(user)
     newActivity.save()
-    user.activitiesOrganized.push(newActivity)
-    user.save()
+    user?.activitiesOrganized.push(newActivity)
+    user?.save()
     // }
 
-    res.status(200).send('Activity added!')
+    res.status(200).send('Activity added!') */
+    res.status(999).send('Comment')
   }
 
   public async updateActivity (req: Request, res: Response) : Promise<void> {
@@ -100,10 +101,10 @@ class ActivityRoutes {
 
     let joinedOrOrganizer = Boolean(false)
 
-    activity.users.forEach(function (user: any) {
-      if (user._id.toString() === userJoining._id.toString()) {
+    activity?.users.forEach(function (user: any) {
+      if (user._id.toString() === userJoining?._id.toString()) {
         joinedOrOrganizer = true
-      } else if (userJoining._id.toString() === activity.organizer._id.toString()) {
+      } else if (userJoining?._id.toString() === activity?.organizer._id.toString()) {
         joinedOrOrganizer = true
       }
     })
@@ -115,30 +116,32 @@ class ActivityRoutes {
       res.status(404).send('Activity not found')
     } else if (joinedOrOrganizer === true) {
       res.status(400).send('Already joined')
-    } else {
+    } /* else {
       userJoining.activities.push(activity)
       activity.users.push(userJoining)
       userJoining.save()
       activity.save()
       res.status(200).send('User Added to Activity')
-    }
+    } */
+    res.status(999).send('Comment')
   }
 
   public async deleteActivity (req: Request, res: Response) : Promise<void> {
     const activityToDelete = await Activity.findOneAndDelete({ name: req.params.nameActivity }, req.body)
     if (activityToDelete == null) {
       res.status(404).send("The activity doesn't exist!")
-    } else {
+    } /* else {
       const organizer = await User.findOne({ id: req.body.organizer })
-      organizer.activitiesOrganized.pull({ id: activityToDelete.id })
-      organizer.save()
+      organizer?.activitiesOrganized.pull({ id: activityToDelete.id })
+      organizer?.save()
       activityToDelete.users.forEach(function (user) {
         user.activities.pull({ id: activityToDelete.id })
         user.save()
       })
 
       res.status(200).send('Deleted!')
-    }
+    } */
+    res.status(999).send('Comment')
   }
 
   routes () {

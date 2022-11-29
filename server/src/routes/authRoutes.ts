@@ -37,11 +37,11 @@ class AuthRoutes {
     const location = { type: 'Point', coordinates: [req.body.location.coordinates[0], req.body.location.coordinates[1]], index: '2dsphere' }
     const newUser = new User({ name, surname, username, password: hashed, phone, mail, languages, location, photo, active: true, fromGoogle: true })
     const roleadded = await Role.findOne({ role })
-    newUser.roles = roleadded._id
+    newUser.roles = roleadded?._id
     await newUser.save()
 
     const userFound = await User.findOne({ username })
-    const token = jwt.sign({ id: userFound._id, username: userFound.username }, _SECRET, {
+    const token = jwt.sign({ id: userFound?._id, username: userFound?.username }, _SECRET, {
       expiresIn: 3600
     })
     res.status(200).json({ token })
@@ -58,11 +58,11 @@ class AuthRoutes {
     const newUser = new User({ name, surname, username, password: hashed, phone, mail, languages, location, photo, active: true, fromGoogle: false })
     console.log('3')
     const roleadded = await Role.findOne({ role })
-    newUser.roles = roleadded._id
+    newUser.roles = roleadded?._id
     await newUser.save()
 
     const userFound = await User.findOne({ username })
-    const token = jwt.sign({ id: userFound._id, username: userFound.username }, _SECRET, {
+    const token = jwt.sign({ id: userFound?._id, username: userFound?.username }, _SECRET, {
       expiresIn: 3600
     })
     res.status(200).json({ token })

@@ -14,6 +14,7 @@ import ratingRoutes from './routes/ratingRoutes'
 import activityRoutes from './routes/activityRoutes'
 import messageRoutes from './routes/messageRoutes'
 import authRoutes from './routes/authRoutes'
+import rsaRoutes from './routes/rsaRoutes'
 import Chat from './models/Chat'
 
 class Service {

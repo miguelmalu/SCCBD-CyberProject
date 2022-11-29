@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import * as rsa from '../middlewares/rsaKeys'
+import * as rsa from 'example-rsa'
 import * as bcu from 'bigint-crypto-utils'
 
 import User from '../models/User'

@@ -23,15 +23,15 @@ class UserRoutes {
     }
   }
 
-  public async getPeopleLikedByID (req: Request, res: Response) : Promise<void> {
+/*   public async getPeopleLikedByID (req: Request, res: Response) : Promise<void> {
     const userFound = await User.findById(req.params.userID).populate('personalRatings', 'rating -_id description').populate('messages').populate('roles', '-_id name').populate('peopleliked', 'name').populate('peopledisliked', 'name')
     const likedUsers : string[] = []
-    userFound.peopleliked.forEach(people => likedUsers.push(people.id))
+    userFound?.peopleliked.forEach(people => likedUsers.push(people.id))
     if (userFound == null || userFound.active === false) {
       res.status(404).send("The user doesn't exist!")
     } else {
       const allUsers = await User.find().populate('personalRatings', 'rating -_id description').populate('messages').populate('roles', '-_id name').populate('peopleliked', 'name').populate('peopledisliked', 'name')
-      /* const activeUsers = allUsers.filter(user => (userFound.peopleliked.forEach(people => people.id)) === user.id) */
+      // const activeUsers = allUsers.filter(user => (userFound.peopleliked.forEach(people => people.id)) === user.id)
       const activeUsers = allUsers.filter(user => likedUsers.includes(user.id))
 
       if (activeUsers.length === 0) {
@@ -40,7 +40,7 @@ class UserRoutes {
         res.status(200).send(activeUsers)
       }
     }
-  }
+  } */
 
   public async getUserByName (req: Request, res: Response) : Promise<void> {
     const userFound = await User.findOne({ name: req.params.nameUser }).populate('messages')
@@ -67,7 +67,7 @@ class UserRoutes {
     const hashed = await bcrypt.hash(password, salt)
     const newUser = new User({ name, surname, username, password: hashed, phone, mail, languages, location, photo, active: true })
     const roleadded = await Role.findOne({ role })
-    newUser.roles = roleadded._id
+    newUser.roles = roleadded?._id
     await newUser.save()
     res.status(200).send('User added!')
   }
@@ -121,13 +121,13 @@ class UserRoutes {
     console.log(userFound)
     const distance = req.params.maxDistance
     console.log(distance)
-    console.log(userFound.location.coordinates[0])
+    console.log(userFound?.location!.coordinates[0])
     const usersDistance = await User.find({
       location:
         {
           $near:
             {
-              $geometry: { type: 'Point', coordinates: [userFound.location.coordinates[0], userFound.location.coordinates[1]] },
+              $geometry: { type: 'Point', coordinates: [userFound?.location!.coordinates[0], userFound?.location!.coordinates[1]] },
               $minDistance: 0,
               $maxDistance: distance
             }
@@ -142,7 +142,7 @@ class UserRoutes {
 
   routes () {
     this.router.get('/', this.getUsers)
-    this.router.get('/peopleLiked/:userID', this.getPeopleLikedByID)
+    // this.router.get('/peopleLiked/:userID', this.getPeopleLikedByID)
     this.router.get('/:nameUser', this.getUserByName)
     this.router.get('/byID/:userID', this.getUserByID)
     this.router.post('/', this.addUser)
