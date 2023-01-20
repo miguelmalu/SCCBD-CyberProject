@@ -7,6 +7,7 @@ import mongoose from 'mongoose'
 import compression from 'compression'
 import cors from 'cors'
 import Server from 'socket.io'
+import * as bodyParser from 'body-parser';
 
 import indexRoutes from './routes/indexRoutes'
 import usersRoutes from './routes/usersRoutes'
@@ -15,7 +16,9 @@ import activityRoutes from './routes/activityRoutes'
 import messageRoutes from './routes/messageRoutes'
 import authRoutes from './routes/authRoutes'
 import rsaRoutes from './routes/rsaRoutes'
+import filesRoutes from './routes/filesRoutes'
 import Chat from './models/Chat'
+import { throws } from 'assert'
 
 class Service {
   public app: express.Application
@@ -28,6 +31,9 @@ class Service {
   }
 
   config () {
+    // Files
+    const userFiles = './user_upload/'
+    
     // MongoDB settings
     const MONGO_URI = process.env.DB_URL || 'mongodb://localhost:27017/cyber'
     mongoose.connect(MONGO_URI)
@@ -43,6 +49,8 @@ class Service {
     this.app.use(helmet()) // Offers automatically security in front of some cracking attacks.
     this.app.use(compression()) // Allows to send the data back in a compressed format.
     this.app.use(cors()) // It automatically configures and leads with CORS issues and configurations.
+    this.app.use(bodyParser.json({limit: '50mb'})); // Files limit for Base64
+    this.app.use('/api/files', express.static(userFiles)); // Static serving Files
   }
 
   routes () {
@@ -53,6 +61,7 @@ class Service {
     this.app.use('/api/messages', messageRoutes)
     this.app.use('/api/auth', authRoutes)
     this.app.use('/api/rsa', rsaRoutes)
+    this.app.use('/api/files', filesRoutes)
   }
 
   start () {

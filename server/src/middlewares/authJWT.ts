@@ -13,9 +13,7 @@ export async function verifyToken (req: Request, res: Response, next: NextFuncti
     const jwtPayload = <any>jwt.verify(token, _SECRET)
     res.locals.jwtPayload = jwtPayload
     const id = jwtPayload.id
-    console.log('I try')
     const user = await User.findById(id)
-    console.log(user)
     if (!user) return res.status(404).json({ message: 'No user found' })
 
     next()

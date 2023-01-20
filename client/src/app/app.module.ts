@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule, TransferState } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +25,8 @@ import { ListRolesComponent } from './components/list-roles/list-roles.component
 import { CreateRoleComponent } from './components/create-role/create-role.component';
 import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interceptor';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { FileListComponent } from './components/file-list/file-list.component';
 
 @NgModule({
   declarations: [
@@ -45,18 +47,22 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     LoginUserComponent,
     ListRolesComponent,
     CreateRoleComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    FileUploaderComponent,
+    FileListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true },
+    TransferState
   ],
   bootstrap: [AppComponent]
 })

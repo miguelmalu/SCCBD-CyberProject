@@ -33,7 +33,7 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
         //console.log(request.headers.get('Authorization'));
         //console.log(request.headers.get('x-access-token'));
     
-        console.log("OK");
+/*         console.log("OK"); */
         console.log(request);
     }
     return next.handle(request);

@@ -17,6 +17,8 @@ import { ListRolesComponent } from './components/list-roles/list-roles.component
 import { UserGuardGuard } from './guards/user-guard.guard';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { FileListComponent } from './components/file-list/file-list.component';
 
 
 // Routes
@@ -39,6 +41,8 @@ const routes: Routes = [
   { path: 'list-messages', component: ListMessagesComponent, canActivate: [UserGuardGuard]},
   { path: 'create-role', component: CreateRoleComponent, canActivate: [UserGuardGuard]},
   { path: 'list-roles', component: ListRolesComponent, canActivate: [UserGuardGuard]},
+  { path: 'file-uploader', component: FileUploaderComponent, canActivate: [UserGuardGuard]},
+  { path: 'file-list', component: FileListComponent, canActivate: [UserGuardGuard]},
   { path: '**', redirectTo: '', pathMatch: 'full', canActivate: [UserGuardGuard]} // In case of a wrong URL, the code redirects to the main path
 ];
 
