@@ -16,7 +16,7 @@
     "bigint-crypto-utils": "^3.1.7",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
-    "example-rsa": "file:../../example-rsa",
+    "example-rsa": "file:../../SCCBD-RSA_Module_Example",
     "express": "^4.17.3",
     "geojson": "^0.5.0",
     "helmet": "^5.0.2",
@@ -24,6 +24,7 @@
     "mongoose": "^6.2.4",
     "morgan": "^1.10.0",
     "node-geocoder": "^4.0.0",
+    "permission-module": "file:../../SCCBD-Permission_Module",
     "socket.io": "^2.4.1"
   },
   "devDependencies": {

@@ -17,7 +17,8 @@ class RSARoutes {
     if (!keypair) {
       res.status(404).send('No publicKey available')
     } else {
-      res.status(200).send((await keypair).publicKey)
+      //console.log(await keypair).publicKey)
+      res.status(200).send((await keypair).publicKey.toString())
     }
   }
 
