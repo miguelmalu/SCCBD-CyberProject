@@ -33,6 +33,9 @@ class Service {
   config () {
     // Files
     const userFiles = './user_upload/'
+/*     const listFiles = (callBack) => {
+      return fs.readdir('./user_upload', callBack);
+     }; */
     
     // MongoDB settings
     const MONGO_URI = process.env.DB_URL || 'mongodb://localhost:27017/cyber'
@@ -51,6 +54,8 @@ class Service {
     this.app.use(cors()) // It automatically configures and leads with CORS issues and configurations.
     this.app.use(bodyParser.json({limit: '50mb'})); // Files limit for Base64
     this.app.use('/api/files', express.static(userFiles)); // Static serving Files
+
+     
   }
 
   routes () {
