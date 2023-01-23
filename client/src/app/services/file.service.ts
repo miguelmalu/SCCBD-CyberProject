@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
  providedIn: 'root'
 })
 export class FileService {
-url = environment.apiURL + '/api';
+/* url = environment.apiURL + '/api';
  private fileList: string[] = new Array<string>();
  private fileList$: Subject<string[]> = new ReplaySubject<string[]>(1);
  private displayLoader$: Subject<boolean> = new BehaviorSubject<boolean>(false);
@@ -70,5 +70,5 @@ url = environment.apiURL + '/api';
  private addFileToList(fileName: string): void {
    this.fileList.push(fileName);
    this.fileList$.next(this.fileList);
- }
+ } */
 }

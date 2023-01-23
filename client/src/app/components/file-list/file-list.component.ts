@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class FileListComponent {
 
- public fileList$: Observable<string[]> = this.fileService.list();
+/*  public fileList$: Observable<string[]> = this.fileService.list();
 
  constructor(private fileService: FileService) { }
 
@@ -19,5 +19,5 @@ export class FileListComponent {
 
  public remove(fileName: string):  void {
    this.fileService.remove(fileName);
- }
+ } */
 }

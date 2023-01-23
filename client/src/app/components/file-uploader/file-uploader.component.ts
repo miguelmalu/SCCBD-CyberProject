@@ -9,7 +9,7 @@ import { FileService } from '../../services/file.service';
 })
 export class FileUploaderComponent {
 
- public formGroup = this.fb.group({
+ /* public formGroup = this.fb.group({
    file: [null, Validators.required]
  });
 
@@ -35,5 +35,5 @@ export class FileUploaderComponent {
 
  public onSubmit(): void {
    this.fileService.upload(this.fileName, this.formGroup.get('file')!.value);
- }
+ } */
 }

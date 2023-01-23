@@ -1,7 +1,7 @@
 _type: export
 __export_format: 4
-__export_date: 2022-12-23T01:30:11.968Z
-__export_source: insomnia.desktop.app:v2022.4.1
+__export_date: 2023-01-22T20:49:12.141Z
+__export_source: insomnia.desktop.app:v2022.7.0
 resources:
   - _id: req_6d51393d041c4c44b1d6a741365e1918
     parentId: fld_cb34f437281640668d69cdca2bd5482a
@@ -73,7 +73,7 @@ resources:
     _type: request
   - _id: req_149d7b9dc8ba47728418e8932d053031
     parentId: fld_cb34f437281640668d69cdca2bd5482a
-    modified: 1671739478288
+    modified: 1674244326874
     created: 1671739478288
     url: https://ea1-backend.mooo.com/api/auth/login
     name: Login
@@ -83,7 +83,7 @@ resources:
       mimeType: application/json
       text: |-
         {
-        	"username": "esmarcuar",
+        	"username": "miguelmalu",
         	"password": "1234"
         }
     parameters: []
@@ -337,6 +337,119 @@ resources:
     created: 1671739478210
     url: http://localhost:3000/api/users/forget/Miguel
     name: Delete User
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_4d9d8ed6525645689f88598e893de9c7
+        name: x-access-token
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGI3MTZiYzEwNTc5ZWUyZTFhODhhZiIsImlhdCI6MTY1MTU5MTY1NywiZXhwIjoxNjUxNTk1MjU3fQ.ejMsMKoUg9MGvgB-vWI2R5zd_MYpRikoKZbElcjm5Ow
+        description: ""
+    authentication: {}
+    metaSortKey: -1646742899277.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bc3364a846fc436eab96c9c0790e7e68
+    parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
+    modified: 1674412190298
+    created: 1674409115168
+    url: http://localhost:3000/api/files/
+    name: Get Files
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646742899427.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
+    parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
+    modified: 1674244182514
+    created: 1674244182514
+    name: Files
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1647709856229.5
+    _type: request_group
+  - _id: req_f34499ee60a24ea7af961d7f30e75cd2
+    parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
+    modified: 1674247145428
+    created: 1674247128396
+    url: http://localhost:3000/api/files
+    name: Download File
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646742899377.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_438747ba917a4b07b6b2daf66c1e7e62
+    parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
+    modified: 1674408627637
+    created: 1674244182539
+    url: http://localhost:3000/api/files/upload
+    name: Upload File
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_21b0358b10b74da485df9bdba68e0fc7
+          name: file
+          value: ""
+          description: ""
+          type: file
+          fileName: D:\Data\Engineering\Q4A\SCCBD\Cyber\example.txt
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+        id: pair_644490cfbef745539498fb4c19b47c1d
+      - id: pair_b2d5f80abb68412093fc51eb05ef5bdc
+        name: x-access-token
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjc0NTYwYmNiMDc2MjdlZThlMTJkZCIsInVzZXJuYW1lIjoibWlndWVsbWFsdSIsImlhdCI6MTY3NDQwODU0NywiZXhwIjoxNjc0NDEyMTQ3fQ.9wVX9-dpkHKkXR5aC-BQ3IS1lWgogjcnUaPgY64NMTY
+        description: ""
+    authentication: {}
+    metaSortKey: -1646742899327.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9685ea13cb45499795447be7ff6c04a3
+    parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
+    modified: 1674244272909
+    created: 1674244182543
+    url: http://localhost:3000/api/files/some
+    name: Delete File
     description: ""
     method: DELETE
     body: {}

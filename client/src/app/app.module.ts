@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, TransferState } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -55,14 +55,12 @@ import { FileListComponent } from './components/file-list/file-list.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true },
-    TransferState
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -4,7 +4,6 @@ import multer from 'multer';
 import {GridFsStorage} from 'multer-gridfs-storage';
 import File from '../models/File';
 
-const userFiles = './user_upload/'
 const MONGO_URI = process.env.DB_URL || 'mongodb://localhost:27017/cyber'
 
 const storage = new GridFsStorage({
