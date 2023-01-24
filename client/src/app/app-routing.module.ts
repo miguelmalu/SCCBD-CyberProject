@@ -19,7 +19,7 @@ import { LoginUserComponent } from './components/login-user/login-user.component
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { ListFilesComponent } from './components/list-files/list-files.component';
-
+import { SocketsComponent } from './components/sockets/sockets.component';
 
 // Routes
 const routes: Routes = [
@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'list-roles', component: ListRolesComponent, canActivate: [UserGuardGuard]},
   { path: 'upload-file', component: UploadFileComponent, canActivate: [UserGuardGuard]},
   { path: 'list-files', component: ListFilesComponent, canActivate: [UserGuardGuard]},
+  { path: 'sockets', component: SocketsComponent, canActivate: [UserGuardGuard]},
   { path: '**', redirectTo: '', pathMatch: 'full', canActivate: [UserGuardGuard]} // In case of a wrong URL, the code redirects to the main path
 ];
 

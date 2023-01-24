@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +30,8 @@ import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interc
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { ListFilesComponent } from './components/list-files/list-files.component';
+import { SocketsComponent } from './components/sockets/sockets.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { ListFilesComponent } from './components/list-files/list-files.component
     CreateRoleComponent,
     RegisterUserComponent,
     UploadFileComponent,
-    ListFilesComponent
+    ListFilesComponent,
+    SocketsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ import { ListFilesComponent } from './components/list-files/list-files.component
     ToastrModule.forRoot(),
     HttpClientModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FormsModule,
+    CommonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true }

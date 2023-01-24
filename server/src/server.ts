@@ -62,8 +62,23 @@ class Service {
     const httpServer = this.app.listen(this.app.get('port'), () => {
       console.log('Server listening on port', this.app.get('port'))
     })
-
+    /* const io = new Server(httpServer) */
     const io = new Server(httpServer)
+      io.on('connection', (socket: any) => {
+        console.log('Connected...', socket.id)
+      
+        socket.on('message', (message:any) => {
+          console.log(message);
+          io.emit('message', `${socket.id.substr(0, 2)} said ${message}`);
+        });
+      
+        socket.on('disconnect', () => {
+          console.log('a user disconnected!');
+        });
+      });
+    
+
+/*     const io = new Server(httpServer)
     const connectedUsers:any[] = []
 
     io.on('connection', function (client: any) {
@@ -116,11 +131,11 @@ class Service {
         console.log('Error detected', client.id)
         console.log(err)
       })
-    })
+    }) */
   }
 }
 
-function saveChat (content: any, sender: any, receiver: any, isMy: boolean) {
+/* function saveChat (content: any, sender: any, receiver: any, isMy: boolean) {
   const chat = new Chat({
     _id: sender,
     users: [{
@@ -150,7 +165,7 @@ function saveChat (content: any, sender: any, receiver: any, isMy: boolean) {
   }).catch((err) => {
     console.log('Error saveChat (isMy: ' + isMy + '): ' + err.chat)
   })
-}
+} */
 
 const service = new Service()
 service.start()

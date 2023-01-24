@@ -40,4 +40,5 @@
     *ngFor="let file of fileInfos | async"
   >
     <li class="list-group-item"> {{file.filename}}</li>
+   <!--  <button class="btn btn-default btn-sm" (click)="download(file.filename)">Download</button> -->
   </ul>

@@ -113,8 +113,5 @@
       }
     }
   },
-  "defaultProject": "EA-BackOffice",
-  "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
-  }
+  "defaultProject": "EA-BackOffice"
 }

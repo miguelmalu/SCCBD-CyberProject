@@ -1,4 +1,4 @@
-export class File {
+export class _File {
     filename: string;
     uploadDate: string;
 

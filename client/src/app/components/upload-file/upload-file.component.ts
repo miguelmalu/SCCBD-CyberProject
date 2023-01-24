@@ -28,6 +28,10 @@ export class UploadFileComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
+  download(fileName: string): void {
+    this.uploadService.download(fileName);
+ }
+
   upload(): void {
     this.progress = 0;
 
