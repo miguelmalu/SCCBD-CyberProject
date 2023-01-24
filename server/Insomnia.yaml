@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2023-01-24T13:18:11.286Z
+__export_date: 2023-01-24T14:45:01.991Z
 __export_source: insomnia.desktop.app:v2022.7.0
 resources:
   - _id: req_6d51393d041c4c44b1d6a741365e1918
@@ -389,10 +389,10 @@ resources:
     _type: request_group
   - _id: req_b72e2e6cc89c433199e530b823b8c765
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674563393261
+    modified: 1674570605545
     created: 1674563248946
-    url: http://localhost:3000/api/images/image/3bad2ad3b0d910209f4ad9cea3ef5658.jpg
-    name: Fetch Image
+    url: http://localhost:3000/api/files/image/1711de95db26b550cb1d160a44028cff.jpg
+    name: Get Image Content
     description: ""
     method: GET
     body: {}

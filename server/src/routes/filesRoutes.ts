@@ -44,7 +44,7 @@ class FilesRoutes {
     }
 
     // GET: Fetches a particular image and render on browser
-    public async fecthImage (req: Request, res: Response) : Promise<void> {
+    public async getImageContent (req: Request, res: Response) : Promise<void> {
         gfs.find({ filename: req.params.filename }).toArray((err:any, files:any) => {
             if (!files[0] || files.length === 0) {
                 return res.status(200).json({
@@ -65,7 +65,7 @@ class FilesRoutes {
     }
 
     // GET: Fetches a particular file by filename
-    public async fetchFile (req: Request, res: Response) : Promise<void> {
+    public async getFile (req: Request, res: Response) : Promise<void> {
         gfs.find({ filename: req.params.filename }).toArray((err:any, files:any) => {
             if (!files[0] || files.length === 0) {
                 return res.status(200).json({
@@ -81,7 +81,7 @@ class FilesRoutes {
     }
 
     // GET: Fetch most recently added record
-    public async fetchRecent (req: Request, res: Response) : Promise<void> {
+    public async getRecent (req: Request, res: Response) : Promise<void> {
         File.findOne({}, {}, { sort: { '_id': -1 } })
         .then((image) => {
             res.status(200).json({
@@ -94,7 +94,7 @@ class FilesRoutes {
     }
 
     // GET: Fetches all the files in the uploads collection
-    public async fetchAllFiles (req: Request, res: Response) : Promise<void> {
+    public async getAllFiles (req: Request, res: Response) : Promise<void> {
         gfs.find().toArray((err: any, files: any) => {
             if (!files || files.length === 0) {
                 return res.status(200).json({
@@ -205,10 +205,10 @@ class FilesRoutes {
     }
 
   routes () {
-    this.router.get('/image/:filename', this.fecthImage)
-    this.router.get('/recent', this.fetchRecent)
-    this.router.get('/file/:filename', this.fetchFile)
-    this.router.get('/', this.fetchAllFiles)
+    this.router.get('/image/:filename', this.getImageContent)
+    this.router.get('/recent', this.getRecent)
+    this.router.get('/file/:filename', this.getFile)
+    this.router.get('/', this.getAllFiles)
     this.router.post('/', upload.single('file'), [verifyToken], this.uploadFile)
     this.router.post('/multiple', upload.array('file', 3), [verifyToken], this.uploadMultiple)
     this.router.post('/image/delete/:id', [verifyToken], this.deleteImage)
