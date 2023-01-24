@@ -17,13 +17,13 @@ import { ListRolesComponent } from './components/list-roles/list-roles.component
 import { UserGuardGuard } from './guards/user-guard.guard';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
-import { FileListComponent } from './components/file-list/file-list.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { ListFilesComponent } from './components/list-files/list-files.component';
 
 
 // Routes
 const routes: Routes = [
-  { path: '', redirectTo: '/list-users', pathMatch: 'full'},
+  { path: '', redirectTo: '/list-files', pathMatch: 'full'},
   { path: 'login-user', component: LoginUserComponent},
   { path: 'register-user', component: RegisterUserComponent},
   { path: 'list-users', component: ListUsersComponent, canActivate: [UserGuardGuard]},
@@ -41,8 +41,8 @@ const routes: Routes = [
   { path: 'list-messages', component: ListMessagesComponent, canActivate: [UserGuardGuard]},
   { path: 'create-role', component: CreateRoleComponent, canActivate: [UserGuardGuard]},
   { path: 'list-roles', component: ListRolesComponent, canActivate: [UserGuardGuard]},
-  { path: 'file-uploader', component: FileUploaderComponent, canActivate: [UserGuardGuard]},
-  { path: 'file-list', component: FileListComponent, canActivate: [UserGuardGuard]},
+  { path: 'upload-file', component: UploadFileComponent, canActivate: [UserGuardGuard]},
+  { path: 'list-files', component: ListFilesComponent, canActivate: [UserGuardGuard]},
   { path: '**', redirectTo: '', pathMatch: 'full', canActivate: [UserGuardGuard]} // In case of a wrong URL, the code redirects to the main path
 ];
 

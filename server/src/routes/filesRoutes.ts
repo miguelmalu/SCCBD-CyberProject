@@ -29,7 +29,46 @@ class FilesRoutes {
   }
 
   public async getFiles (req: Request, res: Response) : Promise<void> {
-/*     res.sendFile(req.file!.originalname); */
+    File.find({}, (err: any, files: any) => {
+      if (err) {
+          console.log(err);
+          res.status(500).send(err);
+      }
+      else {
+          /* res.render('uploads', { items: items }); */
+          res.status(200).send(files);
+      }
+  });
+}
+
+  public async getFile (req: Request, res: Response) : Promise<void> {
+    /* const fileName = req.params.fileName
+    try {
+      await mongoClient.connect();
+
+      const database = mongoClient.db(dbConfig.database);
+      const bucket = new GridFSBucket(database, {
+        bucketName: dbConfig.imgBucket,
+      });
+
+      let downloadStream = bucket.openDownloadStreamByName(req.params.name);
+
+      downloadStream.on("data", function (data) {
+        return res.status(200).write(data);
+      });
+
+      downloadStream.on("error", function (err) {
+        return res.status(404).send({ message: "Cannot download the Image!" });
+      });
+
+      downloadStream.on("end", () => {
+        return res.end();
+      });
+    } catch (error) {
+      return res.status(500).send({
+        message: error.message,
+      });
+    } */
   }
 
   public async uploadFile (req: Request, res: Response) : Promise<void> {
@@ -50,7 +89,8 @@ class FilesRoutes {
   }
 
   routes () {
-    this.router.get('/', upload.array('file'), this.getFiles)
+    this.router.get('/', this.getFiles)
+    this.router.get('/:fileName', this.getFiles)
     this.router.post('/upload', upload.single('file'), [verifyToken], this.uploadFile)
     this.router.delete('/:fileName', [verifyToken], this.deleteFile)
   }

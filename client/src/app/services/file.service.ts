@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID, Optional } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, ReplaySubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -10,6 +10,30 @@ import { environment } from 'src/environments/environment';
  providedIn: 'root'
 })
 export class FileService {
+  
+  private url = environment.apiURL + '/api';
+
+  constructor(private http: HttpClient) { }
+
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.url}/files/upload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
+  getFiles(): Observable<any> {
+    return this.http.get(`${this.url}/files`);
+  }
+
+
+
 /* url = environment.apiURL + '/api';
  private fileList: string[] = new Array<string>();
  private fileList$: Subject<string[]> = new ReplaySubject<string[]>(1);

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,8 +27,8 @@ import { ListRolesComponent } from './components/list-roles/list-roles.component
 import { CreateRoleComponent } from './components/create-role/create-role.component';
 import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interceptor';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
-import { FileListComponent } from './components/file-list/file-list.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { ListFilesComponent } from './components/list-files/list-files.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,8 @@ import { FileListComponent } from './components/file-list/file-list.component';
     ListRolesComponent,
     CreateRoleComponent,
     RegisterUserComponent,
-    FileUploaderComponent,
-    FileListComponent
+    UploadFileComponent,
+    ListFilesComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,9 @@ import { FileListComponent } from './components/file-list/file-list.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true }

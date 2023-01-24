@@ -4,4 +4,4 @@ const FileSchema = new Schema({
   filename: {type: String}
 })
 
-export default model('File', FileSchema)
+export default model('uploads.files', FileSchema)

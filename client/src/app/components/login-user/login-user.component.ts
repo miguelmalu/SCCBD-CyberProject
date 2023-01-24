@@ -49,7 +49,7 @@ export class LoginUserComponent implements OnInit {
         localStorage.setItem('token', res.token);
         console.log(localStorage.getItem('token'));
         this.toastr.success('User successfully logged in!', 'User logged in');
-        this.router.navigate(['/list-users']);
+        this.router.navigate(['/list-files']);
       }
     }, error => {
       console.log(error);

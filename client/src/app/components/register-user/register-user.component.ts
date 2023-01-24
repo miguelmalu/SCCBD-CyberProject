@@ -68,7 +68,7 @@ export class RegisterUserComponent implements OnInit {
         localStorage.setItem('token', res.token);
         console.log(localStorage.getItem('token'));
         this.toastr.success('User successfully registered!', 'User registered');
-        this.router.navigate(['/list-users']);
+        this.router.navigate(['/list-files']);
       }
     }, error => {
       console.log(error);

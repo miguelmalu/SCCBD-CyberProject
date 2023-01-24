@@ -3,11 +3,11 @@ import { FileService } from '../../services/file.service';
 import { Observable } from 'rxjs';
 
 @Component({
- selector: 'app-file-list',
- templateUrl: './file-list.component.html',
- styleUrls: ['./file-list.component.css']
+ selector: 'app-list-files',
+ templateUrl: './list-files.component.html',
+ styleUrls: ['./list-files.component.css']
 })
-export class FileListComponent {
+export class ListFilesComponent {
 
 /*  public fileList$: Observable<string[]> = this.fileService.list();
 
