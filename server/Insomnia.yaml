@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2023-01-22T20:49:12.141Z
+__export_date: 2023-01-24T13:18:11.286Z
 __export_source: insomnia.desktop.app:v2022.7.0
 resources:
   - _id: req_6d51393d041c4c44b1d6a741365e1918
@@ -191,9 +191,9 @@ resources:
     _type: request_group
   - _id: req_386baf5ae65d490898f99354a1962565
     parentId: fld_76a0a7240f7e4d38bd024f9d0b092f55
-    modified: 1671739478194
+    modified: 1674520202454
     created: 1671739478194
-    url: https://ea1-backend.mooo.com/api/users
+    url: http://localhost:3000/api/users
     name: Get Users
     description: ""
     method: GET
@@ -358,9 +358,9 @@ resources:
     _type: request
   - _id: req_bc3364a846fc436eab96c9c0790e7e68
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674412190298
+    modified: 1674566197308
     created: 1674409115168
-    url: http://localhost:3000/api/files/
+    url: http://localhost:3000/api/files
     name: Get Files
     description: ""
     method: GET
@@ -379,7 +379,7 @@ resources:
     _type: request
   - _id: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
     parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
-    modified: 1674244182514
+    modified: 1674566282140
     created: 1674244182514
     name: Files
     description: ""
@@ -387,19 +387,19 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1647709856229.5
     _type: request_group
-  - _id: req_f34499ee60a24ea7af961d7f30e75cd2
+  - _id: req_b72e2e6cc89c433199e530b823b8c765
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674247145428
-    created: 1674247128396
-    url: http://localhost:3000/api/files
-    name: Download File
+    modified: 1674563393261
+    created: 1674563248946
+    url: http://localhost:3000/api/images/image/3bad2ad3b0d910209f4ad9cea3ef5658.jpg
+    name: Fetch Image
     description: ""
     method: GET
     body: {}
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1646742899377.75
+    metaSortKey: -1646742899415.25
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -410,9 +410,9 @@ resources:
     _type: request
   - _id: req_438747ba917a4b07b6b2daf66c1e7e62
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674408627637
+    modified: 1674566162271
     created: 1674244182539
-    url: http://localhost:3000/api/files/upload
+    url: http://localhost:3000/api/files
     name: Upload File
     description: ""
     method: POST
@@ -432,7 +432,7 @@ resources:
         id: pair_644490cfbef745539498fb4c19b47c1d
       - id: pair_b2d5f80abb68412093fc51eb05ef5bdc
         name: x-access-token
-        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjc0NTYwYmNiMDc2MjdlZThlMTJkZCIsInVzZXJuYW1lIjoibWlndWVsbWFsdSIsImlhdCI6MTY3NDQwODU0NywiZXhwIjoxNjc0NDEyMTQ3fQ.9wVX9-dpkHKkXR5aC-BQ3IS1lWgogjcnUaPgY64NMTY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjc0NTYwYmNiMDc2MjdlZThlMTJkZCIsInVzZXJuYW1lIjoibWlndWVsbWFsdSIsImlhdCI6MTY3NDU2NTIzMCwiZXhwIjoxNjc0NTY4ODMwfQ.e5KUF7p7FoFKI0_SvNewPMjvMVOM4USepl-148R_7xY
         description: ""
     authentication: {}
     metaSortKey: -1646742899327.75
@@ -446,9 +446,9 @@ resources:
     _type: request
   - _id: req_9685ea13cb45499795447be7ff6c04a3
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674244272909
+    modified: 1674566254150
     created: 1674244182543
-    url: http://localhost:3000/api/files/some
+    url: http://localhost:3000/api/files/files/delete/id
     name: Delete File
     description: ""
     method: DELETE

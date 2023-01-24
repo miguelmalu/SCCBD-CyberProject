@@ -30,10 +30,11 @@ class Service {
 
   config () { 
     // MongoDB settings
+    mongoose.Promise = require('bluebird');
     const MONGO_URI = process.env.DB_URL || 'mongodb://localhost:27017/cyber'
     mongoose.connect(MONGO_URI)
       .then(db => console.log('DB is connected'))
-
+    
     // Settings
     this.app.set('port', process.env.PORT || 3000)
 
