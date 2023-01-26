@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2023-01-24T14:45:01.991Z
+__export_date: 2023-01-26T18:35:53.823Z
 __export_source: insomnia.desktop.app:v2022.7.0
 resources:
   - _id: req_6d51393d041c4c44b1d6a741365e1918
@@ -210,27 +210,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_c5cea5710ff54844b4b32ad670a95dda
-    parentId: fld_76a0a7240f7e4d38bd024f9d0b092f55
-    modified: 1671739478220
-    created: 1671739478220
-    url: http://localhost:3000/api/users/peopleLiked/62b74560bcb07627ee8e12dd
-    name: Get People Liked
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1646742899402.75
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
   - _id: req_8b3414538eb0484e9927e9463ab522fa
     parentId: fld_76a0a7240f7e4d38bd024f9d0b092f55
     modified: 1671739478198
@@ -356,19 +335,19 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_bc3364a846fc436eab96c9c0790e7e68
+  - _id: req_a2ace42f75b549a3876001dbcb3cc997
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674566197308
-    created: 1674409115168
-    url: http://localhost:3000/api/files
-    name: Get Files
+    modified: 1674742591704
+    created: 1674742563694
+    url: http://localhost:3000/api/files/file/PeoGroc.png
+    name: Get File
     description: ""
     method: GET
     body: {}
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1646742899427.75
+    metaSortKey: -1646742899477.75
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -387,17 +366,45 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1647709856229.5
     _type: request_group
-  - _id: req_b72e2e6cc89c433199e530b823b8c765
+  - _id: req_bc3364a846fc436eab96c9c0790e7e68
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674570605545
-    created: 1674563248946
-    url: http://localhost:3000/api/files/image/1711de95db26b550cb1d160a44028cff.jpg
-    name: Get Image Content
+    modified: 1674742575429
+    created: 1674409115168
+    url: http://localhost:3000/api/files
+    name: Get All Files
     description: ""
     method: GET
     body: {}
     parameters: []
     headers: []
+    authentication: {}
+    metaSortKey: -1646742899427.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b72e2e6cc89c433199e530b823b8c765
+    parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
+    modified: 1674673961002
+    created: 1674563248946
+    url: http://localhost:3000/api/files/image/PeoGroc.png
+    name: Get Image Content
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: '{ "user": "Juan", "filename": "PeoGroc.png", "status": "true",
+        "signedContent":
+        "86386052472149366981882856778110465017866917601709407720423237856469361187937082317733970544867499877102104228150770101409319553900078031527696255566696802981776424002498968909630349336290489884391157094305218361771878542935181358418421823871288808137734988310748222350934736344228830391057059149018410645219"
+        }'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
     authentication: {}
     metaSortKey: -1646742899415.25
     isPrivate: false
@@ -410,7 +417,7 @@ resources:
     _type: request
   - _id: req_438747ba917a4b07b6b2daf66c1e7e62
     parentId: fld_8c05e6b4b7fd47d68144d6b26f69bbcd
-    modified: 1674566162271
+    modified: 1674741594649
     created: 1674244182539
     url: http://localhost:3000/api/files
     name: Upload File
@@ -424,7 +431,11 @@ resources:
           value: ""
           description: ""
           type: file
-          fileName: D:\Data\Engineering\Q4A\SCCBD\Cyber\example.txt
+          fileName: D:\Data\Engineering\Q4A\SCCBD\Cyber\PeoGroc.png
+        - id: pair_2bec7e449f6a485591b45cf6bd244904
+          name: owner
+          value: miguelmalu
+          description: ""
     parameters: []
     headers:
       - name: Content-Type
@@ -432,7 +443,7 @@ resources:
         id: pair_644490cfbef745539498fb4c19b47c1d
       - id: pair_b2d5f80abb68412093fc51eb05ef5bdc
         name: x-access-token
-        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjc0NTYwYmNiMDc2MjdlZThlMTJkZCIsInVzZXJuYW1lIjoibWlndWVsbWFsdSIsImlhdCI6MTY3NDU2NTIzMCwiZXhwIjoxNjc0NTY4ODMwfQ.e5KUF7p7FoFKI0_SvNewPMjvMVOM4USepl-148R_7xY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjc0NWYwYmNiMDc2MjdlZThlMTMwOCIsInVzZXJuYW1lIjoibXVwaWtnYSIsImlhdCI6MTY3NDczOTc0NSwiZXhwIjoxNjc0NzQzMzQ1fQ.Sh1XqREfJbZxLCKUm6mke8h8CsZMZvyEoP6J2o1wADM
         description: ""
     authentication: {}
     metaSortKey: -1646742899327.75
@@ -461,563 +472,6 @@ resources:
         description: ""
     authentication: {}
     metaSortKey: -1646742899277.75
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_fcd773827574487fab7dca50a104345a
-    parentId: fld_b6b91da3e8fc49479d9264936f79c0e5
-    modified: 1671739478167
-    created: 1671739478167
-    url: http://localhost:3000/api/activities
-    name: Add Activity
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	 "name": "Activity12354",
-           "description": "Best Activity",
-        	 "organizer": "6248a183540c0723510656c4",
-           "language": "Italian",
-        	 "location": ["133125135","125363421563"]
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_c5019c5486f945b7a11e9381c18c2163
-      - id: pair_80f642da4b694a88b29e73e457548e18
-        name: x-access-token
-        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjc0NTYwYmNiMDc2MjdlZThlMTJkZCIsInVzZXJuYW1lIjoibWlndWVsbWFsdSIsImlhdCI6MTY1NjMyMTUxNCwiZXhwIjoxNjU2MzI1MTE0fQ.295JODdFkJaO7mo9QmPbMVdMSiOL7w9EqBzvFJlYUpw
-        description: ""
-    authentication: {}
-    metaSortKey: -1647345079043
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_b6b91da3e8fc49479d9264936f79c0e5
-    parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
-    modified: 1671739478158
-    created: 1671739478158
-    name: Activities
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1647709856217
-    _type: request_group
-  - _id: req_9c89cdcfea8842b3a509137155545193
-    parentId: fld_b6b91da3e8fc49479d9264936f79c0e5
-    modified: 1671739478187
-    created: 1671739478187
-    url: http://localhost:3000/api/activities/adduseractivity
-    name: Add User Activity
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"activityname" : "62389f11234b8d4369a8b2c4",
-        	"username" : "62389f35234b8d4369a8b2ca"
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_c5019c5486f945b7a11e9381c18c2163
-    authentication: {}
-    metaSortKey: -1647345079036.75
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_9e6ffbdc0be7418a86f32bb4ead6478f
-    parentId: fld_b6b91da3e8fc49479d9264936f79c0e5
-    modified: 1671739478160
-    created: 1671739478160
-    url: https://ea1-backend.mooo.com/api/activities
-    name: Get Activities
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647345079030.5
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_af63517a1d0343a9be10345bd99d36db
-    parentId: fld_b6b91da3e8fc49479d9264936f79c0e5
-    modified: 1671739478163
-    created: 1671739478163
-    url: http://localhost:3000/api/activities/YourName
-    name: Get ActivitiesByName
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647345079018
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_db6933ede3ab437a9a2d7c24ab261438
-    parentId: fld_b6b91da3e8fc49479d9264936f79c0e5
-    modified: 1671739478179
-    created: 1671739478179
-    url: http://localhost:3000/api/activities/YourActivity
-    name: Update Activity
-    description: ""
-    method: PUT
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"name": "Activity Modified"
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_db2d5aa9d1ea43bba639b105a2403ba0
-    authentication: {}
-    metaSortKey: -1647345078993
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_0ef63b6cbb564e578c12744af70bab40
-    parentId: fld_b6b91da3e8fc49479d9264936f79c0e5
-    modified: 1671739478171
-    created: 1671739478171
-    url: http://localhost:3000/api/activities/Activity1234
-    name: Delete Activity
-    description: ""
-    method: DELETE
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647345078943
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_2d7b87f7cc9c4655ab07feb9d0c09a46
-    parentId: fld_0e99c42c6bdd440786600110457c1612
-    modified: 1671739478232
-    created: 1671739478232
-    url: http://localhost:3000/api/ratings
-    name: Add Rating
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"rater": "62307335f54dae760f420d70",
-          "rated": "6230769ee708b2822554fe52",
-          "rating": 5,
-          "description": "Description"
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_c2c097108f47415b909cdc902eb192fe
-    authentication: {}
-    metaSortKey: -1647342746148
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_0e99c42c6bdd440786600110457c1612
-    parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
-    modified: 1671739478224
-    created: 1671739478224
-    name: Ratings
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1647709856192
-    _type: request_group
-  - _id: req_5324c1c5040e4abab92919d9f637b569
-    parentId: fld_0e99c42c6bdd440786600110457c1612
-    modified: 1671739478237
-    created: 1671739478237
-    url: http://localhost:3000/api/ratings/ratingactivity
-    name: Add Rating Activity
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"rater": "62389efc234b8d4369a8b2c1",
-          "activityRated": "62389f11234b8d4369a8b2c4",
-          "rating": 4,
-          "description": ""
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_c2c097108f47415b909cdc902eb192fe
-    authentication: {}
-    metaSortKey: -1647342746123
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_2c3b8a99663d47d9832307e093eac131
-    parentId: fld_0e99c42c6bdd440786600110457c1612
-    modified: 1671739478240
-    created: 1671739478240
-    url: http://localhost:3000/api/ratings/ratinguser
-    name: Add Rating User
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"rater": "62389f35234b8d4369a8b2ca",
-          "userRated": "62389efc234b8d4369a8b2c1",
-          "rating": 5,
-          "description": ""
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_c2c097108f47415b909cdc902eb192fe
-    authentication: {}
-    metaSortKey: -1647342746110.5
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_c0c8960e6f1b410ca16da3fd80df3a50
-    parentId: fld_0e99c42c6bdd440786600110457c1612
-    modified: 1671739478226
-    created: 1671739478226
-    url: http://localhost:3000/api/ratings
-    name: Get Ratings
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647342746098
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_dc6e31fc45de4ce5a5785240e091227b
-    parentId: fld_0e99c42c6bdd440786600110457c1612
-    modified: 1671739478229
-    created: 1671739478229
-    url: http://localhost:3000/api/ratings/YourName
-    name: Get RatingsByName
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647342746048
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_5c19f2a5ce5f4826b44f1bf7a4ffa11a
-    parentId: fld_0e99c42c6bdd440786600110457c1612
-    modified: 1671739478243
-    created: 1671739478243
-    url: http://localhost:3000/api/ratings/ratingRef
-    name: Delete Rating
-    description: ""
-    method: DELETE
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647342745998
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_f18cabad97fd4e0aacaa0549ec4b7eea
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478251
-    created: 1671739478251
-    url: http://localhost:3000/api/messages/user
-    name: Add Message User
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"message": "hola2",
-          "sender": "62339094688ad5f8570e8639",
-        	"receiver": "62338391085d5f2a2fcbccb2"
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_d733d61c7f0049c693edd133f91c9736
-    authentication: {}
-    metaSortKey: -1647947064177
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
-    modified: 1671739478246
-    created: 1671739478246
-    name: Messages
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1647709856142
-    _type: request_group
-  - _id: req_f9180d3f53bd4309b32d3a07a962d8dd
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478256
-    created: 1671739478256
-    url: http://localhost:3000/api/messages/activity
-    name: Add Message Activity
-    description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        	"message": "hola 123",
-          "sender": "62339094688ad5f8570e8639",
-        	"activity": "62339b17b87601895dfe8913"
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_d733d61c7f0049c693edd133f91c9736
-    authentication: {}
-    metaSortKey: -1647947064152
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_7d6cce8f8c644a9297ecad21924bd13e
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478260
-    created: 1671739478260
-    url: http://localhost:3000/api/messages
-    name: Get Messages
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647947064127
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_3c5d4c7d3c324737adcab4f57163f4f1
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478269
-    created: 1671739478269
-    url: http://localhost:3000/api/messages/activity/activityRef
-    name: Get MessagesByActivity
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647947019681.5
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_4a57d346ee7b4647baf88e4e681c4e0e
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478272
-    created: 1671739478272
-    url: http://localhost:3000/api/messages/receiver/receiverRef
-    name: Get MessagesByReceiver
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647946997458.75
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_718ec560e8524b538ac578f4b75dd7a2
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478275
-    created: 1671739478275
-    url: http://localhost:3000/api/messages/sender/senderRef
-    name: Get MessagesBySender
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647946986347.375
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_dae83fb276374be99a4405b658370137
-    parentId: fld_c8cc419e84cc4a9a9b12b8f673d7de93
-    modified: 1671739478264
-    created: 1671739478264
-    url: http://localhost:3000/api/messages/messageRef
-    name: Delete Message
-    description: ""
-    method: DELETE
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647946975236
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_ed793eb0a9ac44259397cbeab58784b3
-    parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
-    modified: 1671741266385
-    created: 1671739542206
-    url: http://localhost:3000/api/rsa/getServerPublicKey
-    name: getServerPublicKey
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647709856092
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_9d9a7e2b4e1f48d588b139424357552d
-    parentId: wrk_949e5c2c6fca46a3b7a60828e854e364
-    modified: 1671741848150
-    created: 1671741801040
-    url: http://localhost:3000/api/rsa/getBlindSignature/:blindedM
-    name: getBlindSignature
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1647629674935.5
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true

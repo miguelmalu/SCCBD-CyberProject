@@ -9,6 +9,7 @@ import { saveAs } from 'file-saver';
 import { publicEncrypt } from 'crypto';
 
 import { _File } from 'src/app/models/file';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-permissions',
@@ -27,43 +28,25 @@ export class PermissionsComponent {
   privateKey:any
   r:any
 
-  permision:any
-  signedPermision:any
-
-  tempURL:any
+  permission:any
+  signedPermission:any
 
   constructor(private socketService: SocketService,
     private fileService: FileService) { }
 
   async ngOnInit(){
     this.socketService.getNewMessage().subscribe((message: any) => {
-      /* this.messageList.push(message); */
-      console.log("50:")
-      console.log(message)
-      console.log("60: " + message.filename)
-      console.log("70: " + message.signature)
-      if (message.signature == null) {
-        console.log("permision")
-        this.permision = message
-      } else {
-        console.log("signedPermision")
-        this.signedPermision = message
+      if (message.filename !== undefined) {
+        if (message.signature == null) {
+          this.permission = message
+          this.messageList.push(message.filename + " request by " + message.user);
+        } else {
+          this.signedPermission = message
+          this.messageList.push(message.filename + " request approved by " + message.owner);
+        }
       }
-      this.messageList.push(message.filename);
     })
-/*     myAsynFunction(),
-    console.log(myAsynFunction),
-    console.log("dddddd")
-     getData(),
-    async function getData() {
-      const response = await rsa.generateRsaKeys(1024);
-      return console.log("2222");
-    },
-    async function getData2() {
-      const response = await rsa.generateRsaKeys(1024);
-      return console.log(response);
-    },
-    get(this) */
+
     this.username = localStorage.getItem('username')!;
 
     const publicKeyE = BigInt(localStorage.getItem('publicKeyE')!)
@@ -74,52 +57,23 @@ export class PermissionsComponent {
     this.privateKey = new rsa.RsaPrivateKey(privateKeyD, privateKeyN)
 
     this.r = bcu.randBetween(this.publicKey.n - 1n)
-    console.log("R: " + this.r)
   }
 
   async requestPermission() {
-/*     (async () => {
-      console.log(this.targetUser + "," + this.targetFile)
-      const permision = await perm.createPermision(this.targetUser,this.targetFile);
-      this.socketService.sendMessage(permision);
-      this.targetUser = '';
-      this.targetFile = '';
-    }); */
-/*     this.socketService.sendMessage(this.newMessage);
-    this.newMessage = ''; */
-    console.log(this.username)
-    const permision = await perm.createPermision(this.username, this.targetFile);
-    console.log("requestPermission:")
-    console.log(permision)
-    this.socketService.sendMessage(permision);
-/*     console.log(this.targetUser)
-    console.log(this.targetFile)
-    console.log(createPermision) */
+    const permission = await perm.createPermission(this.username, this.targetFile);
+    this.socketService.sendMessage(permission);
     this.targetFile = '';
   }
 
   async signPermission() {
-    /*       this.socketService.sendMessage(await createPermision(this.targetUser, this.targetFile));
-          this.targetUser = '';
-          this.targetFile = ''; */
-
-    
-    this.fileService.getFile(this.permision.filename).subscribe(async data => {
-      console.log(data);
+    this.fileService.getFile(this.permission.filename).subscribe(async data => {
       const imageOwner = data.aliases
-      console.log("imageOwner: " + imageOwner)
-      console.log("this.username: " + this.username)
       if (imageOwner == this.username) {
-        const signatureContent = BigInt(await perm.prepareSignature(this.permision))
+        const signatureContent = BigInt(await perm.prepareSignature(this.permission))
         const encryptedSignatureContent = signatureContent * this.publicKey.encrypt(this.r) % this.publicKey.n
         const signedContent = this.privateKey.sign(encryptedSignatureContent)
-        this.signedPermision = await perm.updatePermision(this.permision, this.username, signedContent.toString(), this.r.toString())
-/*         console.log(signatureContent)
-        console.log(encryptedSignatureContent)
-        console.log(signedContent) */
-        console.log("sP: ")
-        console.log(this.signedPermision)
-        this.socketService.sendMessage(this.signedPermision);
+        this.signedPermission = await perm.updatePermission(this.permission, this.username, signedContent.toString(), this.r.toString())
+        this.socketService.sendMessage(this.signedPermission);
       } else
         console.log("not the Owner");
     }, error => {
@@ -129,72 +83,12 @@ export class PermissionsComponent {
   }
 
   async getFileContent() {
-    console.log("signature: " + this.signedPermision.signature)
-    this.fileService.download(this.signedPermision).subscribe(data => {
-      console.log("getFile OK");
-      console.log(data);
+    this.fileService.download(this.signedPermission).subscribe(data => {
       const file = new Blob([data], { type: data.type });
-      saveAs(file, 'data.png');
+      saveAs(file, this.signedPermission.filename);
       /* window.open(window.URL.createObjectURL(data)) */
-      this.tempURL = data;
     }, error => {
-      console.log("getFile ERROR");
       console.log(error);
     })
-    /*       this.socketService.sendMessage(await createPermision(this.targetUser, this.targetFile));
-          this.targetUser = '';
-          this.targetFile = ''; */
-/*     console.log("Hola")
-    const signatureContent = BigInt(await perm.prepareSignature(this.permision))
-    const encryptedSignatureContent = signatureContent * this.publicKey.encrypt(this.r) % this.publicKey.n
-    const signedContent = this.privateKey.sign(encryptedSignatureContent)
-    
-    this.socketService.sendMessage(signedContent);
-    console.log("sC: " + signedContent) */
   }
-  
-
- /*  async function get() {
-    this.keypair = await rsa.generateRsaKeys(1024);
-    console.log(this.publicKey)
-    this.r = bcu.randBetween(this.publicKey.n - 1n)
-  } */
 }
-
-  
-
-/* const myAsynFunction2 = async (): Promise<any> => {
-  const permision = await perm.createPermision(targetUser, targetFile);
-  return permision;
-} */
-
-/* async function send() {
-  const response = await rsa.generateRsaKeys(1024);
-  return console.log("2222");
-}
-
-
-const myAsynFunction = async (): Promise<any> => {
-  const keypair = await rsa.generateRsaKeys(1024)
-  const publickeyServidor = publicKey
-  const privatekeyServidor = privateKey
-  console.log(publickeyServidor)
-  console.log(privatekeyServidor)
-  return {
-    publickeyServidor, 
-    privatekeyServidor
-  } 
-} */
-
-
-/* const myAsynFunction2 = async (): Promise<jose.GenerateKeyPairResult> => {
-  const { publicKey, privateKey } = await jose.generateKeyPair('RSA-OAEP')
-  publickeyServidor = await jose.exportJWK(publicKey)
-  privatekeyServidor = await jose.exportJWK(privateKey) 
-  //console.log(publickeyServidor)
-  //console.log(privatekeyServidor)
-  return {
-    publicKey, 
-    privateKey
-  } 
-} */

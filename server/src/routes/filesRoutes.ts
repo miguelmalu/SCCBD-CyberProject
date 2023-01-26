@@ -20,7 +20,6 @@ const storage = new GridFsStorage({
                 if (err) {
                     return reject(err);
                 }
-                console.log("storage owner: " + req.body.owner)
                 /* const filename = buf.toString('hex') + path.extname(file.originalname); */
                 const filename = file.originalname
                 const fileInfo = {
@@ -52,22 +51,9 @@ class FilesRoutes {
 
     // GET: Fetches a particular image and render on browser
     public async getImageContent (req: Request, res: Response) : Promise<void> {
-/*         console.log("getImageContent")
-        console.log(req.params)
-        console.log(req.body)
-
-        console.log(req.body.filename)
-        console.log(req.body.user)
-        console.log(req.body.signedContent) */
         const owner = await User.findOne({ username: req.body.owner })
         let publicKey = new rsa.RsaPublicKey(BigInt(owner!.publicKeyE!), BigInt(owner!.publicKeyN!))
-/*         let publicKeyString = owner!.publicKey
-        console.log(publicKeyString)
-        publicKey = parseInt(publicKeyString!)
-        let publicKeyBigInt = BigInt(publicKeyString!) */
         let r = BigInt(req.body.r)
-
-/*         const r = bcu.randBetween(publicKey - 1n) */
         const obtainedSignature = BigInt(req.body.signature) * bcu.modInv(r,publicKey.n)
         const signatureContent = BigInt(await perm.prepareSignature(req.body))
 
@@ -80,19 +66,13 @@ class FilesRoutes {
             } else {
                 const image = files[0]
                 const imageOwner = image.aliases
-                console.log("gfs.find - imageOwner: " + imageOwner)
 
                 if (publicKey.verify(obtainedSignature) !== signatureContent) {
-                    console.log("Signature Error")
                     res.status(402).json({
                         err: 'Signature Error',
                     });
                 } else {
-                    console.log("Signature OK")
-                    console.log("owner?.username: " + owner?.username)
-                    console.log("imageOwner: " + imageOwner)
                     if (owner?.username == imageOwner) {
-                        console.log("File Permission Owner OK")
                         if (image.contentType === 'image/jpeg' || image.contentType === 'image/png' || image.contentType === 'image/svg+xml') {
                             // render image to browser
                             gfs.openDownloadStreamByName(req.body.filename).pipe(res);
@@ -163,19 +143,15 @@ class FilesRoutes {
 
     // POST: Upload a single image/file to Image collection
     public async uploadFile (req: Request, res: Response) : Promise<void> {
-        console.log("uploadFile req.body: ");
-        console.log(req.body);
         // check for existing images
         File.findOne({ caption: req.body.caption })
             .then((image) => {
-                console.log("uploadFile image: " + image);
                 if (image) {
                     return res.status(200).json({
                         success: false,
                         message: 'Image already exists',
                     });
                 }
-                console.log("owner: " + req.body.owner);
                 let newImage = new File({
                     caption: req.body.caption,
                     filename: req.file!.filename,
@@ -237,7 +213,6 @@ class FilesRoutes {
 
     // DELETE: Delete a particular file by an ID
     public async deleteFile (req: Request, res: Response) : Promise<void> {
-        console.log(req.params.id);
         gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err:any, data:any) => {
             if (err) {
                 return res.status(404).json({ err: err });

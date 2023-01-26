@@ -56,19 +56,19 @@ export class RegisterUserComponent implements OnInit {
       /* roles: this.userForm.get('roles')?.value, */
     }
 
-    console.log(user);
+/*     console.log(user); */
 
 
     this._authService.registerUser(user).subscribe((data: any) => {
       const res = JSON.parse(data);
-      console.log(res.token);
+/*       console.log(res.token); */
       if (res.token == null) {
         this.toastr.error('The received token is invalid! Try again later', 'Invalid token');
       } else {
         localStorage.setItem('token', res.token);
-        console.log(localStorage.getItem('token'));
+/*         console.log(localStorage.getItem('token')); */
         this.toastr.success('User successfully registered!', 'User registered');
-        this.router.navigate(['/list-files']);
+        this.router.navigate(['/files']);
       }
     }, error => {
       console.log(error);

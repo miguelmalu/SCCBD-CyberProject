@@ -1,7 +1,3 @@
-import { Message } from "./message";
-import { Rating } from "./rating";
-import { Activity } from "./activity";
-
 export class User {
     _id?: string;
     name: string;

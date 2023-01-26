@@ -53,16 +53,15 @@ export class LoginUserComponent implements OnInit {
 
     this._authService.loginUser(userCredentials).subscribe((data: any) => {
       const res = JSON.parse(data);
-      console.log(res.token);
+      /* console.log(res.token); */
       if (res.token == null) {
         this.toastr.error('The received token is invalid! Try again later', 'Invalid token');
       } else {
         localStorage.setItem('token', res.token);
-        // No sé si l'agafavem d'una altra manera
         localStorage.setItem('username', userCredentials.username);
-        console.log(localStorage.getItem('token'));
+        /* console.log(localStorage.getItem('token')); */
         this.toastr.success('User successfully logged in!', 'User logged in');
-        this.router.navigate(['/list-files']);
+        this.router.navigate(['/files']);
       }
     }, error => {
       console.log(error);

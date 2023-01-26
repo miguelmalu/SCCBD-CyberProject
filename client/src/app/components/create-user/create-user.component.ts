@@ -38,7 +38,7 @@ export class CreateUserComponent implements OnInit {
     });
     
     this.name = this.aRouter.snapshot.paramMap.get('name');
-    console.log(this.name);
+/*     console.log(this.name); */
   }
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class CreateUserComponent implements OnInit {
       /* roles: this.userForm.get('roles')?.value, */
     }
 
-    console.log(user);
+/*     console.log(user); */
 
     if(this.name !== null){
       // Edit user
@@ -74,7 +74,6 @@ export class CreateUserComponent implements OnInit {
     }
     else {
       // Add user
-      console.log(user);
       this._userService.addUser(user).subscribe(data => {
         this.toastr.success('User successfully created!', 'User created');
         this.router.navigate(['/list-users']);

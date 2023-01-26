@@ -61,7 +61,6 @@ class UserRoutes {
   }
 
   public async addUser (req: Request, res: Response) : Promise<void> {
-    console.log(req.body)
     const { name, surname, username, password, phone, mail, languages, location, photo, role } = req.body
     const salt = await bcrypt.genSalt(10)
     const hashed = await bcrypt.hash(password, salt)
@@ -85,11 +84,8 @@ class UserRoutes {
   }
 
   public async updateUserByID (req: Request, res: Response) : Promise<void> {
-    console.log('Trying to find the user by id ' + req.params.userID)
     // const userToUpdate = await User.findOneAndUpdate({ id: req.params.userID }, req.body)
     const userToUpdate = await User.findOneAndUpdate({ _id: req.params.userID }, req.body)
-    console.log(userToUpdate)
-    console.log('The user has been found')
     // const userToUpdatePass = await User.findOneAndUpdate({ _id: req.params.userID }) // Temp fix
     // if ((userToUpdate && userToUpdatePass) == null) {
     res.status(404).send('The user does not exist!')
@@ -118,10 +114,9 @@ class UserRoutes {
 
   public async getUsersByDistance (req: Request, res: Response) : Promise<void> {
     const userFound = await User.findById(req.params.userID)
-    console.log(userFound)
     const distance = req.params.maxDistance
-    console.log(distance)
-    console.log(userFound?.location!.coordinates[0])
+/*     console.log(distance)
+    console.log(userFound?.location!.coordinates[0]) */
     const usersDistance = await User.find({
       location:
         {

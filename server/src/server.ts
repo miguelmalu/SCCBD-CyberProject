@@ -10,13 +10,8 @@ import Server from 'socket.io'
 
 import indexRoutes from './routes/indexRoutes'
 import usersRoutes from './routes/usersRoutes'
-import ratingRoutes from './routes/ratingRoutes'
-import activityRoutes from './routes/activityRoutes'
-import messageRoutes from './routes/messageRoutes'
 import authRoutes from './routes/authRoutes'
-import rsaRoutes from './routes/rsaRoutes'
 import filesRoutes from './routes/filesRoutes'
-import Chat from './models/Chat'
 
 class Service {
   public app: express.Application
@@ -50,11 +45,7 @@ class Service {
   routes () {
     this.app.use(indexRoutes)
     this.app.use('/api/users', usersRoutes)
-    this.app.use('/api/ratings', ratingRoutes)
-    this.app.use('/api/activities', activityRoutes)
-    this.app.use('/api/messages', messageRoutes)
     this.app.use('/api/auth', authRoutes)
-    this.app.use('/api/rsa', rsaRoutes)
     this.app.use('/api/files', filesRoutes)
   }
 
@@ -62,15 +53,11 @@ class Service {
     const httpServer = this.app.listen(this.app.get('port'), () => {
       console.log('Server listening on port', this.app.get('port'))
     })
-    /* const io = new Server(httpServer) */
     const io = new Server(httpServer)
       io.on('connection', (socket: any) => {
         console.log('Connected...', socket.id)
       
         socket.on('message', (message:any) => {
-          console.log("Server-socket:");
-          console.log(message);
-          /* io.emit('message', `${socket.id.substr(0, 2)} said ${message}`); */
           io.emit('message', message);
         });
       
@@ -78,96 +65,8 @@ class Service {
           console.log('a user disconnected!');
         });
       });
-    
-
-/*     const io = new Server(httpServer)
-    const connectedUsers:any[] = []
-
-    io.on('connection', function (client: any) {
-      console.log('Connected...', client.id)
-
-      client.on('chatID', function (data: any) {
-        const chatID = data.id
-
-        client.join(chatID)
-        connectedUsers.push(chatID)
-
-        client.broadcast.emit('onlineUsers', { 'users': connectedUsers })
-
-        // listens when a user is disconnected from the server
-        client.on('disconnect', function () {
-          // Remove ConnectedUsers
-          const index = connectedUsers.indexOf(chatID)
-          if (index > -1) { connectedUsers.splice(index, 1) }
-
-          // Leave From Room
-          client.leave(chatID)
-          client.broadcast.emit('onlineUsers', { 'users': connectedUsers })
-          console.log('Disconnected...', client.id)
-        })
-
-        // listens for new broadcast messages coming in
-        client.on('message', function name (data: any) {
-          console.log(data)
-          io.emit('message', data)
-        })
-
-        client.on('send_message', function (message: any) {
-          const receiverChatID = message.receiverChatID
-          const senderChatID = message.senderChatID
-          const content = message.content
-
-          saveChat(content, senderChatID, receiverChatID, true)
-
-          client.in(receiverChatID).emit('receive_message', {
-            'content': content,
-            'senderChatID': senderChatID,
-            'receiverChatID': receiverChatID
-          })
-          saveChat(content, receiverChatID, senderChatID, false)
-        })
-      })
-
-      // listens when there's an error detected and logs the error on the console
-      client.on('error', function (err: any) {
-        console.log('Error detected', client.id)
-        console.log(err)
-      })
-    }) */
   }
 }
-
-/* function saveChat (content: any, sender: any, receiver: any, isMy: boolean) {
-  const chat = new Chat({
-    _id: sender,
-    users: [{
-      _id: receiver,
-      messages: {
-        ismy: isMy,
-        message: content
-      }
-    }
-    ]
-  })
-
-  Chat.findOne({ _id: sender }, (_err: any, doc: any) => {
-    if (!doc) {
-      chat.save()
-    } else {
-      const receiverIndex = doc.users.findIndex((element: any) => element._id === receiver)
-      if (receiverIndex !== undefined && receiverIndex !== -1) {
-        doc.users[receiverIndex].messages.push({ ismy: isMy, message: content })
-        doc.save()
-      } else {
-        doc.users.push({ _id: receiver, messages: { ismy: isMy, message: content } })
-        doc.save()
-      }
-    }
-    console.log('saveChat OK, isMy: ' + isMy)
-  }).catch((err) => {
-    console.log('Error saveChat (isMy: ' + isMy + '): ' + err.chat)
-  })
-} */
 
 const service = new Service()
 service.start()

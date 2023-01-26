@@ -24,13 +24,13 @@ export async function verifyToken (req: Request, res: Response, next: NextFuncti
 
 export async function isOwner (req: Request, res: Response, next: NextFunction) {
   try {
-    console.log('Verifying if it is owner')
+/*     console.log('Verifying if it is owner') */
     const user = await User.findById(res.locals.jwtPayload.id)
-    console.log(user)
+/*     console.log(user) */
     const role = await Role.findById(user?.roles)
-    if (role?.name === 'owner') {
+/*     if (role?.name === 'owner') {
       console.log('The user is the owner!')
-    }
+    } */
 
     next()
   } catch (error) {
