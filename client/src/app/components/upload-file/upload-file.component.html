@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div *ngIf="currentFile" class="progress my-3">
+<!-- <div *ngIf="currentFile" class="progress my-3">
   <div
     class="progress-bar progress-bar-info progress-bar-striped"
     role="progressbar"
@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+<div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div> -->
 
 <div class="card mt-3">
   <div class="card-header">List of Files</div>
@@ -39,6 +39,45 @@
     class="list-group list-group-flush"
     *ngFor="let file of fileInfos | async"
   >
-    <li class="list-group-item"> {{file.filename}}</li>
+    <li class="list-group-item"> {{file.filename}} ({{file.aliases}})</li>
    <!--  <button class="btn btn-default btn-sm" (click)="download(file.filename)">Download</button> -->
   </ul>
+
+
+<!-- <div class="container mt-5">
+  <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+          <div class="card">
+              <div class="card-body text-center">
+                  <span class="title">List of Files</span> -->
+                  <!-- <button class="btn btn-success float-end" routerLink="/create-role">New Role</button> -->
+                  <!-- <table *ngIf="fileInfos.length > 0" class="table table-striped mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">Filename</th>
+                        <th scope="col">Owner</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let file of fileInfos">
+                        <td>{{ file.filename }}</td>
+                        <td>{{ file.aliases }}</td>
+
+                        <td> -->
+<!--                           <i [routerLink]="['/edit-user', user.name]" class="fa-solid fa-pen-to-square text-primary"></i>
+                            <i (click)="disableUser(user.name)" class="fa-solid fa-eye-slash text-danger"></i>
+                            <i (click)="deleteUser(user.name)" class="fa-solid fa-trash text-danger"></i>
+                            <i [routerLink]="['/message-list-receiver', user._id]" class="fa-solid fa-message text-primary"></i> -->
+                       <!--  </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h5 style="text-align: start; margin-top: 10px;" *ngIf="fileInfos.length === 0">There are no roles yet</h5>
+              </div>
+          </div>
+      </div>
+  </div>
+</div> -->
+
+

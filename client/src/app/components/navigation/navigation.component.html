@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/list-files']">Files</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/permissions']">Permissions</a>
+                </li>
             </ul>
         </div>
         <button *ngIf="!existToken()" class="btn btn-secondary float-end" routerLink="/register-user">REGISTER</button>

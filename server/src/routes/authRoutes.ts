@@ -3,6 +3,9 @@ import User from '../models/User'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import Role, {} from '../models/Role'
+import * as rsa from 'example-rsa'
+import * as perm from 'permission-module'
+import * as bcu from 'bigint-crypto-utils'
 
 const _SECRET: string = 'api+jwt'
 
@@ -69,13 +72,17 @@ class AuthRoutes {
   }
 
   public async login (req: Request, res: Response) {
-    const { username, password } = req.body
-    console.log(password)
+    const { username, password, publicKeyE, publicKeyN } = req.body
+/*     console.log(password) */
     const userFound = await User.findOne({ username })
     if (!userFound) return res.status(400).json({ message: 'User not found' })
 
     const matchPassword = await bcrypt.compare(password, userFound.password)
     if (!matchPassword) return res.status(401).json({ message: 'Invalid password' })
+
+/*     const publicKey = new rsa.RsaPublicKey(publicKeyE, publicKeyN) */
+    const userToUpdate = await User.findOneAndUpdate({ _id: userFound.id }, {"publicKeyE": publicKeyE})
+    const userToUpdate2 = await User.findOneAndUpdate({ _id: userFound.id }, {"publicKeyN": publicKeyN})
 
     const token = jwt.sign({ id: userFound._id, username: userFound.username }, _SECRET, {
       expiresIn: 3600

@@ -17,6 +17,10 @@ const FileSchema = new Schema({
         default: Date.now(),
         type: Date,
     },
+    aliases: {
+        /* required: true, */
+        type: String,
+    }
 })
 
 export default model('File', FileSchema)

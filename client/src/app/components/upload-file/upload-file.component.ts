@@ -5,6 +5,7 @@ import { finalize, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FileService } from '../../services/file.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
  selector: 'app-upload-file',
@@ -19,18 +20,21 @@ export class UploadFileComponent implements OnInit {
 
   fileInfos?: Observable<any>;
 
-  constructor(private uploadService: FileService) { }
+  username!: string
+
+  constructor(private uploadService: FileService,
+              private router: Router, ) { }
   ngOnInit(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.fileInfos = this.uploadService.getAllFiles();
   }
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
 
-  download(fileName: string): void {
+/*   download(fileName: string): void {
     this.uploadService.download(fileName);
- }
+ } */
 
   upload(): void {
     this.progress = 0;
@@ -40,15 +44,18 @@ export class UploadFileComponent implements OnInit {
 
       if (file) {
         this.currentFile = file;
-
-        this.uploadService.upload(this.currentFile).subscribe({
+        this.username = localStorage.getItem('username')!;
+        this.uploadService.upload(this.currentFile, this.username).subscribe({
           next: (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
+/*             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
-              this.fileInfos = this.uploadService.getFiles();
-            }
+            } else if (event instanceof HttpResponse) { */
+              console.log("before calling this.message")
+              /* this.message = event.body.message; */
+              console.log("before calling getFiles")
+              this.fileInfos = this.uploadService.getAllFiles();
+              /* this.router.navigate(['/list-users']); */
+            /* } */
           },
           error: (err: any) => {
             console.log(err);

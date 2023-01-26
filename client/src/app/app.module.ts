@@ -30,7 +30,7 @@ import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interc
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { ListFilesComponent } from './components/list-files/list-files.component';
-import { SocketsComponent } from './components/sockets/sockets.component';
+import { PermissionsComponent } from './components/permissions/permissions.component';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -55,7 +55,7 @@ import { environment } from 'src/environments/environment';
     RegisterUserComponent,
     UploadFileComponent,
     ListFilesComponent,
-    SocketsComponent
+    PermissionsComponent
   ],
   imports: [
     BrowserModule,

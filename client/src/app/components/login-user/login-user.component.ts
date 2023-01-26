@@ -5,6 +5,8 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { empty, isEmpty } from 'rxjs';
+import * as rsa from 'example-rsa'
+import * as bcu from 'bigint-crypto-utils'
 
 import { User } from 'src/app/models/user';
 import { UserCredentials } from 'src/app/models/userCredentials';
@@ -34,10 +36,19 @@ export class LoginUserComponent implements OnInit {
 
   }
 
-  loginUser() {
+  async loginUser() {
+
+    const keypair = await rsa.generateRsaKeys(1024)
+    localStorage.setItem('publicKeyE', keypair.publicKey.e.toString());
+    localStorage.setItem('publicKeyN', keypair.publicKey.n.toString());
+    localStorage.setItem('privateKeyD', keypair.privateKey.d.toString());
+    localStorage.setItem('privateKeyN', keypair.privateKey.n.toString());
+
     const userCredentials: UserCredentials = {
       username: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value,
+      publicKeyE: keypair.publicKey.e.toString(),
+      publicKeyN: keypair.publicKey.n.toString()
     }
 
     this._authService.loginUser(userCredentials).subscribe((data: any) => {
@@ -47,6 +58,8 @@ export class LoginUserComponent implements OnInit {
         this.toastr.error('The received token is invalid! Try again later', 'Invalid token');
       } else {
         localStorage.setItem('token', res.token);
+        // No sé si l'agafavem d'una altra manera
+        localStorage.setItem('username', userCredentials.username);
         console.log(localStorage.getItem('token'));
         this.toastr.success('User successfully logged in!', 'User logged in');
         this.router.navigate(['/list-files']);

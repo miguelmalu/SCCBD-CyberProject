@@ -19,6 +19,8 @@ export class User {
     messages?: Message[]; */
     roles?: string;
     creationDate?: Date;
+    publicKeyE?: string
+    publicKeyN?: string
 
     constructor(name: string, surname: string, username:string, password: string, phone: string,
         mail: string, languages: string[], location: string[], photo: string, roles: string) {
