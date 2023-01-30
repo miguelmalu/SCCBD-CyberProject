@@ -13,3 +13,11 @@ Modules used:
 
 [**Project Presentation**](https://drive.google.com/file/d/1gFK_jF1Z7Dh6UDLPdwnQPmgjksdMHW3E/view?usp=share_link)  
 
+
+
+### Module presentations
+Modules used: 
+- [Homomorphic Encryption](https://github.com/juanelas/paillier-bigint)
+- [Shamir's Secret Sharing](https://github.com/Shamirs-Wallet/shamirs-secret-sharing-ts)
+
+[**Module Presentation**](https://drive.google.com/file/d/12WoJmHNqf9bmuHA3e-8abFaGizHvoBE8/view?usp=sharing)  
